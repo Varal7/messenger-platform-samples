@@ -19,7 +19,10 @@ const
   request = require('request');
 
 var app = express();
-app.set('port', process.env.PORT || 5000);
+const PORT = (process.env.PORT) ? 
+  process.env.PORT :
+  config.get('port');
+app.set('port', PORT);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
